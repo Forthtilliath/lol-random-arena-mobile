@@ -4,6 +4,8 @@
 
 > Version mobile de [LoL Random Arena](https://github.com/Forthtilliath/lol-random-arena) : renseigne les joueurs du lobby, l'app forme les équipes du mode Arena de League of Legends et attribue un champion à chacun.
 
+![Accueil, résultat d'un tirage en duos et groupes sauvegardés](docs/tirage.webp)
+
 ## Fonctionnalités
 
 - 👥 **Duos ou Trios** : 8 équipes de 2 ou 6 équipes de 3
@@ -13,6 +15,8 @@
 - 🔁 **Relancer** un tirage en un geste, **partager** le résultat en texte (Discord, chat du lobby…)
 - 💾 **Pseudos retenus automatiquement** d'une ouverture à l'autre, et **groupes sauvegardés** pour changer de bande d'amis en un geste
 - 🇫🇷 Interface en français
+
+![Bannissement automatique, tirage en trios et accueil](docs/trios.webp)
 
 ## Thème « Hextech »
 
