@@ -1,6 +1,6 @@
 # ⚔️ LoL Random Arena (mobile)
 
-![Expo](https://img.shields.io/badge/Expo_57-000020?style=for-the-badge&logo=expo&logoColor=white) ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![TypeScript](https://img.shields.io/badge/-TypeScript-blue?logo=typescript&logoColor=white&style=for-the-badge) ![License](https://img.shields.io/github/license/forthtilliath/reactnative-lol-random-arena?style=for-the-badge)
+![Expo](https://img.shields.io/badge/Expo_57-000020?style=for-the-badge&logo=expo&logoColor=white) ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![TypeScript](https://img.shields.io/badge/-TypeScript-blue?logo=typescript&logoColor=white&style=for-the-badge) ![License](https://img.shields.io/github/license/forthtilliath/lol-random-arena-mobile?style=for-the-badge)
 
 > Version mobile de [LoL Random Arena](https://github.com/Forthtilliath/lol-random-arena) : renseigne les joueurs du lobby, l'app forme les équipes du mode Arena de League of Legends et attribue un champion à chacun.
 
@@ -35,8 +35,8 @@ Même identité visuelle que le site : palette du client League of Legends (noir
 ## Installation
 
 ```bash
-git clone https://github.com/Forthtilliath/reactnative-lol-random-arena.git
-cd reactnative-lol-random-arena
+git clone https://github.com/Forthtilliath/lol-random-arena-mobile.git
+cd lol-random-arena-mobile
 npm install
 npm start
 ```
