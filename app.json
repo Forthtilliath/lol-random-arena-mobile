@@ -1,0 +1,45 @@
+{
+	"expo": {
+		"name": "LoL Random Arena",
+		"slug": "reactnative-lol-random-arena",
+		"version": "1.0.0",
+		"scheme": "lolrandomarena",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"userInterfaceStyle": "dark",
+		"backgroundColor": "#010A13",
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"package": "com.forthtilliath.lolrandomarena",
+			"adaptiveIcon": {
+				"backgroundColor": "#010A13",
+				"foregroundImage": "./assets/android-icon-foreground.png",
+				"backgroundImage": "./assets/android-icon-background.png",
+				"monochromeImage": "./assets/android-icon-monochrome.png"
+			},
+			"predictiveBackGestureEnabled": false
+		},
+		"web": {
+			"favicon": "./assets/favicon.png",
+			"bundler": "metro"
+		},
+		"plugins": [
+			"expo-router",
+			"expo-image",
+			"expo-font",
+			[
+				"expo-splash-screen",
+				{
+					"backgroundColor": "#010A13",
+					"image": "./assets/splash-icon.png",
+					"imageWidth": 180
+				}
+			]
+		],
+		"experiments": {
+			"typedRoutes": true
+		}
+	}
+}
