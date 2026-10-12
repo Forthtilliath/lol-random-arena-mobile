@@ -57,6 +57,29 @@ Scanne ensuite le QR code avec l'app [Expo Go](https://expo.dev/go), ou lance `n
 
 Après la sortie d'un nouveau champion, lance `npm run sync-champions` : le script régénère `src/lib/champions.ts` et `src/lib/championImages.ts`, et télécharge les portraits manquants dans `assets/champions/`.
 
+### Construire un APK de release
+
+L'APK de release est signé avec une clé propre à l'app, jamais avec le `debug.keystore` public de React Native (plugin [`plugins/withReleaseSigning.js`](./plugins/withReleaseSigning.js)). Sans cette clé, `gradlew assembleRelease` échoue (« Keystore file not set »).
+
+1. Générer la clé une seule fois, **hors du dépôt**, et la sauvegarder (gestionnaire de mots de passe) : la perdre empêche toute mise à jour de l'app installée.
+
+   ```powershell
+   keytool -genkeypair -v -storetype PKCS12 -keyalg RSA -keysize 2048 -validity 10000 -alias lolrandomarena-upload -keystore "$env:USERPROFILE\keys\lolrandomarena-upload.keystore"
+   ```
+
+2. Déclarer son emplacement et son mot de passe dans `~/.gradle/gradle.properties` (jamais dans `android/`, régénéré par `expo prebuild`) :
+
+   ```properties
+   LOLRANDOMARENA_UPLOAD_STORE_FILE=C:/Users/<toi>/keys/lolrandomarena-upload.keystore
+   LOLRANDOMARENA_UPLOAD_STORE_PASSWORD=...
+   LOLRANDOMARENA_UPLOAD_KEY_ALIAS=lolrandomarena-upload
+   LOLRANDOMARENA_UPLOAD_KEY_PASSWORD=...
+   ```
+
+3. Construire : `npx expo prebuild --platform android`, puis `cd android && ./gradlew assembleRelease`.
+
+L'APK n'embarque que le code natif des téléphones ARM (plugin [`plugins/withAndroidAbis.js`](./plugins/withAndroidAbis.js)) ; `npm run android` cible de toute façon l'architecture de l'appareil branché, émulateur compris.
+
 ## Licence
 
 Distribué sous licence [MIT](./LICENSE).
