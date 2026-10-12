@@ -37,7 +37,8 @@
 					"imageWidth": 180
 				}
 			],
-			["./plugins/withReleaseSigning", { "propertyPrefix": "LOLRANDOMARENA" }]
+			["./plugins/withReleaseSigning", { "propertyPrefix": "LOLRANDOMARENA" }],
+			"./plugins/withAndroidAbis"
 		],
 		"experiments": {
 			"typedRoutes": true
