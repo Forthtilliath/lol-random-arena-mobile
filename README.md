@@ -1,38 +1,47 @@
-# ⚔️ LoL Random Arena (mobile)
+# ⚔️ LoL Random Arena
 
-![Expo](https://img.shields.io/badge/Expo_57-000020?style=for-the-badge&logo=expo&logoColor=white) ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![TypeScript](https://img.shields.io/badge/-TypeScript-blue?logo=typescript&logoColor=white&style=for-the-badge) ![License](https://img.shields.io/github/license/forthtilliath/lol-random-arena-mobile?style=for-the-badge)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white) ![Gratuit](https://img.shields.io/badge/Gratuit-C8AA6E?style=for-the-badge) ![License](https://img.shields.io/github/license/forthtilliath/lol-random-arena-mobile?style=for-the-badge)
 
-> Version mobile de [LoL Random Arena](https://github.com/Forthtilliath/lol-random-arena) : renseigne les joueurs du lobby, l'app forme les équipes du mode Arena de League of Legends et attribue un champion à chacun.
+> **Fini les débats avant la partie.** Entre les pseudos de ton lobby, l'app forme les équipes du mode **Arena** de League of Legends et donne un champion à chaque joueur, en un geste.
 
 ![Accueil, résultat d'un tirage en duos et groupes sauvegardés](docs/tirage.webp)
 
-## Fonctionnalités
+## Comment ça marche
 
-- 👥 **Duos ou Trios** : 8 équipes de 2 ou 6 équipes de 3
-- 🎲 **Équipes aléatoires** ou par ordre d'inscription
-- 🏆 **Un champion par joueur, sans doublon**, parmi les 173 champions du jeu, portraits embarqués (fonctionne hors ligne)
-- 🚫 **Bannissement automatique** des champions les plus joués, les plus gagnants ou un mix des deux, d'après les statistiques Arena actuelles d'[op.gg](https://www.op.gg/lol/modes/arena) (connexion requise)
-- 🔁 **Relancer** un tirage en un geste, **partager** le résultat en texte (Discord, chat du lobby…)
-- 💾 **Pseudos retenus automatiquement** d'une ouverture à l'autre, et **groupes sauvegardés** pour changer de bande d'amis en un geste
+1. **Choisis le format** : Duos (8 équipes de 2) ou Trios (6 équipes de 3).
+2. **Entre les pseudos** de tes amis, ou recharge un groupe déjà enregistré.
+3. **Lance le tirage** : les équipes sont formées et chacun reçoit son champion.
+
+Le résultat ne te plaît pas ? Relance d'un geste. Il te plaît ? Partage-le sur Discord ou dans le chat du lobby.
+
+## Ce que fait l'app
+
+- 🎲 **Équipes aléatoires**, ou dans l'ordre d'inscription pour jouer avec ton duo habituel
+- 🏆 **Un champion par joueur, jamais deux fois le même**, parmi tous les champions du jeu
+- 🚫 **Bannissement automatique** des champions les plus forts du moment, d'après les statistiques Arena d'[op.gg](https://www.op.gg/lol/modes/arena) : les plus joués, ceux qui gagnent le plus, ou un mélange des deux
+- 💾 **Tes pseudos sont retenus** d'une partie à l'autre, et tu peux **enregistrer plusieurs groupes** pour passer d'une bande d'amis à l'autre
+- 📶 **Fonctionne hors ligne** : seul le bannissement automatique a besoin d'internet
+- 🔒 **Aucun compte, aucune publicité** : tout reste sur ton téléphone
 - 🇫🇷 Interface en français
 
 ![Bannissement automatique, tirage en trios et accueil](docs/trios.webp)
 
-## Thème « Hextech »
+## Une ambiance de client LoL
 
-Même identité visuelle que le site : palette du client League of Legends (noir hextech `#010A13`, bleu nuit `#0A1428`, or `#C8AA6E`, bleu hextech `#0AC8B9`), panneaux à coins biseautés dessinés en SVG, titres en Cinzel. Les tokens sont dans [`src/constants/theme.ts`](src/constants/theme.ts), à garder synchronisés avec `src/app.css` du site.
+L'app reprend l'univers du client League of Legends : noir et or « Hextech », panneaux aux coins biseautés, titres gravés et portraits officiels des champions. C'est la version mobile du site [LoL Random Arena](https://github.com/Forthtilliath/lol-random-arena), avec la même identité visuelle.
 
-## Stack technique
+## Installer l'app
 
-- [Expo SDK 57](https://docs.expo.dev/) + [Expo Router](https://docs.expo.dev/router/introduction/)
-- [React Native 0.86](https://reactnative.dev/) + TypeScript
-- [Zustand](https://zustand.docs.pmnd.rs/) + AsyncStorage : configuration, groupes et dernier tirage persistés sur l'appareil
-- [Zod](https://zod.dev/) : revalidation des données relues depuis le stockage
-- [react-native-svg](https://github.com/software-mansion/react-native-svg), [expo-linear-gradient](https://docs.expo.dev/versions/latest/sdk/linear-gradient/), [expo-image](https://docs.expo.dev/versions/latest/sdk/image/)
-- [Data Dragon](https://developer.riotgames.com/docs/lol#data-dragon) : liste des champions et portraits officiels
-- [Biome](https://biomejs.dev/) (lint + format), [Jest](https://jestjs.io/) + jest-expo (tests)
+L'app est disponible sur **Android**. Télécharge le fichier `.apk` de la dernière version sur la page [Releases](https://github.com/Forthtilliath/lol-random-arena-mobile/releases), ouvre-le sur ton téléphone et autorise l'installation quand Android le demande.
 
-## Installation
+## Pour les développeurs
+
+<details>
+<summary>Lancer le projet, scripts et construction de l'APK</summary>
+
+### Lancer le projet
+
+Projet [Expo](https://docs.expo.dev/) (React Native + TypeScript).
 
 ```bash
 git clone https://github.com/Forthtilliath/lol-random-arena-mobile.git
@@ -43,23 +52,23 @@ npm start
 
 Scanne ensuite le QR code avec l'app [Expo Go](https://expo.dev/go), ou lance `npm run android`.
 
-### Scripts disponibles
+### Scripts
 
-| Commande                 | Description                                                                   |
-| ------------------------ | ----------------------------------------------------------------------------- |
-| `npm start`              | Serveur de développement Expo                                                 |
-| `npm run android`        | Ouvre l'app sur Android                                                       |
-| `npm test`               | Tests unitaires (Jest)                                                        |
-| `npm run typecheck`      | Vérification des types (tsc)                                                  |
-| `npm run lint`           | Lint et format (Biome)                                                        |
-| `npm run format`         | Corrige le lint et le format                                                  |
-| `npm run sync-champions` | Met à jour les champions et leurs portraits depuis Data Dragon                |
+| Commande                 | Description                                                    |
+| ------------------------ | -------------------------------------------------------------- |
+| `npm start`              | Serveur de développement Expo                                  |
+| `npm run android`        | Ouvre l'app sur Android                                        |
+| `npm test`               | Tests unitaires (Jest)                                         |
+| `npm run typecheck`      | Vérification des types (tsc)                                   |
+| `npm run lint`           | Lint et format (Biome)                                         |
+| `npm run format`         | Corrige le lint et le format                                   |
+| `npm run sync-champions` | Met à jour les champions et leurs portraits depuis Data Dragon |
 
-Après la sortie d'un nouveau champion, lance `npm run sync-champions` : le script régénère `src/lib/champions.ts` et `src/lib/championImages.ts`, et télécharge les portraits manquants dans `assets/champions/`.
+Après la sortie d'un nouveau champion, lance `npm run sync-champions` : le script régénère la liste des champions et télécharge les portraits manquants.
 
 ### Construire un APK de release
 
-L'APK de release est signé avec une clé propre à l'app, jamais avec le `debug.keystore` public de React Native (plugin [`plugins/withReleaseSigning.js`](./plugins/withReleaseSigning.js)). Sans cette clé, `gradlew assembleRelease` échoue (« Keystore file not set »).
+L'APK de release est signé avec une clé propre à l'app, jamais avec le `debug.keystore` public de React Native (plugin `withReleaseSigning` de [`@forthtilliath/expo-config-plugins`](https://www.npmjs.com/package/@forthtilliath/expo-config-plugins)). Sans cette clé, `gradlew assembleRelease` échoue (« Keystore file not set »).
 
 1. Générer la clé une seule fois, **hors du dépôt**, et la sauvegarder (gestionnaire de mots de passe) : la perdre empêche toute mise à jour de l'app installée.
 
@@ -76,9 +85,11 @@ L'APK de release est signé avec une clé propre à l'app, jamais avec le `debug
    LOLRANDOMARENA_UPLOAD_KEY_PASSWORD=...
    ```
 
-3. Construire : `npx expo prebuild --platform android`, puis `cd android && ./gradlew assembleRelease`.
+3. Construire : `npx expo prebuild --platform android --clean`, puis `cd android && ./gradlew assembleRelease`.
 
-L'APK n'embarque que le code natif des téléphones ARM (plugin [`plugins/withAndroidAbis.js`](./plugins/withAndroidAbis.js)) ; `npm run android` cible de toute façon l'architecture de l'appareil branché, émulateur compris.
+L'APK n'embarque que le code natif des téléphones ARM (plugin `withAndroidAbis`) ; `npm run android` cible de toute façon l'architecture de l'appareil branché, émulateur compris.
+
+</details>
 
 ## Licence
 
