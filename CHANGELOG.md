@@ -6,6 +6,12 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et le p
 
 ## [Unreleased]
 
+### Modifié
+
+- Le compteur de bannissements accepte aussi une saisie au clavier entre les boutons − et +.
+- L'écran d'erreur propose « Réessayer » ; sur les écrans Résultat et Mes groupes, la flèche retour reste disponible.
+- Interrupteurs, onglets, compteur, écran d'erreur, retours haptiques et plugins de build proviennent désormais des paquets partagés `@forthtilliath/*` (ts-kit, react-native-kit, expo-config-plugins).
+
 ## [1.0.0] - 2026-09-26
 
 Première version, portage mobile du site [LoL Random Arena](https://github.com/Forthtilliath/lol-random-arena).
