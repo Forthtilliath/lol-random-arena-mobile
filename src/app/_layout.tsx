@@ -11,8 +11,9 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { COLORS, FONTS } from "@/constants/theme";
+
+export { ErrorBoundary } from "@/components/ErrorBoundary";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -36,21 +37,19 @@ export default function RootLayout() {
 		<GestureHandlerRootView style={{ flex: 1, backgroundColor: COLORS.background }}>
 			<SafeAreaProvider>
 				<StatusBar style="light" />
-				<ErrorBoundary>
-					<Stack
-						screenOptions={{
-							headerStyle: { backgroundColor: COLORS.background },
-							headerTintColor: COLORS.primary,
-							headerTitleStyle: { fontFamily: FONTS.display, color: COLORS.text },
-							headerShadowVisible: false,
-							contentStyle: { backgroundColor: COLORS.background },
-						}}
-					>
-						<Stack.Screen name="index" options={{ headerShown: false }} />
-						<Stack.Screen name="results" options={{ title: "Résultat" }} />
-						<Stack.Screen name="saves" options={{ title: "Mes groupes", presentation: "modal" }} />
-					</Stack>
-				</ErrorBoundary>
+				<Stack
+					screenOptions={{
+						headerStyle: { backgroundColor: COLORS.background },
+						headerTintColor: COLORS.primary,
+						headerTitleStyle: { fontFamily: FONTS.display, color: COLORS.text },
+						headerShadowVisible: false,
+						contentStyle: { backgroundColor: COLORS.background },
+					}}
+				>
+					<Stack.Screen name="index" options={{ headerShown: false }} />
+					<Stack.Screen name="results" options={{ title: "Résultat" }} />
+					<Stack.Screen name="saves" options={{ title: "Mes groupes", presentation: "modal" }} />
+				</Stack>
 			</SafeAreaProvider>
 		</GestureHandlerRootView>
 	);
