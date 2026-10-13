@@ -6,10 +6,19 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et le p
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-13
+
+### Sécurité
+
+- L'APK est désormais signé avec une clé propre à l'app, et non plus avec la clé de debug publique de React Native. Une version 1.0.0 installée doit être désinstallée avant d'installer celle-ci.
+- L'app ne déclare plus que les permissions dont elle a besoin (internet, vibration, état du réseau) : retrait de l'affichage par-dessus les autres apps et de l'accès au stockage.
+- Mise à jour des dépendances de développement vulnérables (`shell-quote`, `source-map-js`).
+
 ### Modifié
 
 - Le compteur de bannissements accepte aussi une saisie au clavier entre les boutons − et +.
 - L'écran d'erreur propose « Réessayer » ; sur les écrans Résultat et Mes groupes, la flèche retour reste disponible.
+- APK plus léger : il n'embarque plus que le code natif des téléphones ARM.
 - Interrupteurs, onglets, compteur, écran d'erreur, retours haptiques et plugins de build proviennent désormais des paquets partagés `@forthtilliath/*` (ts-kit, react-native-kit, expo-config-plugins).
 
 ## [1.0.0] - 2026-09-26
