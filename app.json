@@ -37,8 +37,11 @@
 					"imageWidth": 180
 				}
 			],
-			["./plugins/withReleaseSigning", { "propertyPrefix": "LOLRANDOMARENA" }],
-			"./plugins/withAndroidAbis"
+			[
+				"@forthtilliath/expo-config-plugins/withReleaseSigning",
+				{ "propertyPrefix": "LOLRANDOMARENA" }
+			],
+			"@forthtilliath/expo-config-plugins/withAndroidAbis"
 		],
 		"experiments": {
 			"typedRoutes": true
