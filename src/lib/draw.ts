@@ -1,3 +1,5 @@
+import { chunk } from "@forthtilliath/ts-kit/array/chunk";
+import { shuffle } from "@forthtilliath/ts-kit/array/shuffle";
 import { type Criteria, defaultPlayerName, TEAM_SETUPS, type TeamSetupKey } from "@/constants/game";
 import type { Champion } from "@/lib/champions";
 
@@ -22,21 +24,6 @@ export type Draw = {
 
 /** Générateur aléatoire injectable, pour des tests déterministes. Renvoie un nombre dans [0, 1[. */
 export type Random = () => number;
-
-export function shuffle<T>(items: readonly T[], random: Random = Math.random): T[] {
-	const result = [...items];
-	for (let i = result.length - 1; i > 0; i--) {
-		const j = Math.floor(random() * (i + 1));
-		[result[i], result[j]] = [result[j], result[i]];
-	}
-	return result;
-}
-
-export function chunk<T>(items: readonly T[], size: number): T[][] {
-	const result: T[][] = [];
-	for (let i = 0; i < items.length; i += size) result.push(items.slice(i, i + size));
-	return result;
-}
 
 /** Pseudos utilisés par le format choisi ; un pseudo vide retombe sur « Joueur N ». */
 export function getPlayerNames(config: DrawConfig): string[] {

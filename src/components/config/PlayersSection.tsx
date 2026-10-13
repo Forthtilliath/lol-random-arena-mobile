@@ -1,3 +1,4 @@
+import { chunk } from "@forthtilliath/ts-kit/array/chunk";
 import { router } from "expo-router";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { HexPanel } from "@/components/ui/HexPanel";
@@ -7,7 +8,6 @@ import { SegmentedControl } from "@/components/ui/SegmentedControl";
 import { SwitchRow } from "@/components/ui/SwitchRow";
 import { defaultPlayerName, TEAM_SETUP_KEYS, TEAM_SETUPS } from "@/constants/game";
 import { COLORS, FONTS, HEXTECH, SPACING } from "@/constants/theme";
-import { chunk } from "@/lib/draw";
 import { useConfigStore } from "@/stores/configStore";
 
 const SETUP_OPTIONS = TEAM_SETUP_KEYS.map((key) => ({
