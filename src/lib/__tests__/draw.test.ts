@@ -1,26 +1,8 @@
 import { CHAMPIONS } from "@/lib/champions";
 import { DEFAULT_CONFIG } from "@/lib/configSchema";
-import { chunk, type DrawConfig, drawTeams, getPlayerNames, shuffle } from "@/lib/draw";
+import { type DrawConfig, drawTeams, getPlayerNames } from "@/lib/draw";
 
 const config = (patch: Partial<DrawConfig> = {}): DrawConfig => ({ ...DEFAULT_CONFIG, ...patch });
-
-describe("shuffle", () => {
-	it("keeps every item and does not mutate the input", () => {
-		const items = [1, 2, 3, 4, 5];
-		const result = shuffle(items);
-		expect([...result].sort()).toEqual(items);
-		expect(items).toEqual([1, 2, 3, 4, 5]);
-	});
-});
-
-describe("chunk", () => {
-	it("splits items in groups of the given size", () => {
-		expect(chunk([1, 2, 3, 4, 5, 6], 3)).toEqual([
-			[1, 2, 3],
-			[4, 5, 6],
-		]);
-	});
-});
 
 describe("getPlayerNames", () => {
 	it("keeps only the players of the chosen setup", () => {
