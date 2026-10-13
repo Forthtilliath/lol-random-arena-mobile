@@ -1,4 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
+import {
+	errorFeedback,
+	successFeedback,
+} from "@forthtilliath/react-native-kit/utils/helpers/haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { Pressable, ScrollView, StyleSheet, Text } from "react-native";
@@ -9,7 +13,6 @@ import { PlayersSection } from "@/components/config/PlayersSection";
 import { HextechButton } from "@/components/ui/HextechButton";
 import { ScreenBackground } from "@/components/ui/ScreenBackground";
 import { COLORS, FONTS, HEXTECH, SPACING } from "@/constants/theme";
-import { errorFeedback, successFeedback } from "@/lib/haptics";
 import { selectConfig, useConfigStore } from "@/stores/configStore";
 import { useDrawStore } from "@/stores/drawStore";
 

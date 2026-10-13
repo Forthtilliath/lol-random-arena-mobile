@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { tapFeedback } from "@forthtilliath/react-native-kit/utils/helpers/haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import type { ComponentProps } from "react";
 import {
@@ -11,7 +12,6 @@ import {
 	type ViewStyle,
 } from "react-native";
 import { COLORS, FONTS, HEXTECH, SPACING } from "@/constants/theme";
-import { tapFeedback } from "@/lib/haptics";
 
 type Props = {
 	label: string;

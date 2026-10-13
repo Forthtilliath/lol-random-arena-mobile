@@ -1,82 +1,70 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+	SegmentedToggle,
+	type SegmentedToggleOption,
+} from "@forthtilliath/react-native-kit/components/picker/SegmentedToggle";
+import { selectFeedback } from "@forthtilliath/react-native-kit/utils/helpers/haptics";
 import { COLORS, FONTS, HEXTECH, SPACING } from "@/constants/theme";
-import { selectFeedback } from "@/lib/haptics";
-
-type Option<T extends string> = { value: T; label: string; hint?: string };
 
 type Props<T extends string> = {
-	options: Option<T>[];
+	options: readonly SegmentedToggleOption<T>[];
 	value: T;
 	onChange: (value: T) => void;
 	/** Décrit le choix pour le lecteur d'écran. */
 	label: string;
 };
 
-/** Onglets exclusifs (format Duos/Trios, critère de bannissement), équivalent du site. */
-export function SegmentedControl<T extends string>({ options, value, onChange, label }: Props<T>) {
+/** Onglets exclusifs (format Duos/Trios, critère de bannissement) aux couleurs Hextech. */
+export function SegmentedControl<T extends string>({ value, onChange, ...props }: Props<T>) {
 	return (
-		<View style={styles.row} accessibilityRole="radiogroup" accessibilityLabel={label}>
-			{options.map((option) => {
-				const selected = option.value === value;
-				return (
-					<Pressable
-						key={option.value}
-						onPress={() => {
-							if (!selected) selectFeedback();
-							onChange(option.value);
-						}}
-						accessibilityRole="radio"
-						accessibilityState={{ selected }}
-						accessibilityLabel={option.hint ? `${option.label}, ${option.hint}` : option.label}
-						style={[styles.option, selected && styles.selected]}
-					>
-						<Text style={[styles.label, selected && styles.labelSelected]}>{option.label}</Text>
-						{option.hint && (
-							<Text style={[styles.hint, selected && styles.hintSelected]}>{option.hint}</Text>
-						)}
-					</Pressable>
-				);
-			})}
-		</View>
+		<SegmentedToggle
+			{...props}
+			value={value}
+			onChange={(next) => {
+				if (next !== value) selectFeedback();
+				onChange(next);
+			}}
+			styles={STYLES}
+		/>
 	);
 }
 
-const styles = StyleSheet.create({
+// fontWeight à "normal" : sur Android, un poids explicite fait ignorer la police chargée.
+const STYLES = {
 	row: {
-		flexDirection: "row",
 		gap: SPACING.sm,
+		marginBottom: 0,
 	},
-	option: {
-		flex: 1,
-		alignItems: "center",
+	button: {
 		justifyContent: "center",
 		gap: 2,
 		paddingVertical: 10,
 		paddingHorizontal: SPACING.xs,
-		borderWidth: 1,
+		borderRadius: 0,
 		borderColor: COLORS.borderMuted,
 		backgroundColor: "rgba(1, 10, 19, 0.6)",
 	},
-	selected: {
+	buttonActive: {
 		borderColor: HEXTECH.gold2,
 		backgroundColor: "rgba(70, 55, 20, 0.45)",
 	},
-	label: {
+	text: {
 		fontFamily: FONTS.displayMedium,
+		fontWeight: "normal",
 		fontSize: 13,
 		letterSpacing: 1.2,
 		textTransform: "uppercase",
 		color: COLORS.textMuted,
 	},
-	labelSelected: {
+	textActive: {
 		color: COLORS.text,
 	},
 	hint: {
 		fontFamily: FONTS.body,
 		fontSize: 11,
+		marginTop: 0,
 		color: COLORS.textFaint,
 	},
-	hintSelected: {
+	hintActive: {
 		color: COLORS.textMuted,
 	},
-});
+} as const;

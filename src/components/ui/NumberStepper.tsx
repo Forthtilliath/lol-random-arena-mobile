@@ -1,106 +1,65 @@
-import { Ionicons } from "@expo/vector-icons";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { QuantityStepper } from "@forthtilliath/react-native-kit/components/picker/QuantityStepper";
+import { tapFeedback } from "@forthtilliath/react-native-kit/utils/helpers/haptics";
 import { COLORS, FONTS, HEXTECH } from "@/constants/theme";
-import { tapFeedback } from "@/lib/haptics";
 
 type Props = {
 	value: number;
 	onChange: (value: number) => void;
 	min: number;
 	max: number;
-	/** Ce que compte le compteur, repris par le lecteur d'écran (« Diminuer bannissements »). */
+	/** Ce que compte le compteur, repris par le lecteur d'écran (« Retirer : bannissements »). */
 	label: string;
 };
 
-/** Compteur −/+ borné. Un appui long saute de 5 en 5 pour atteindre vite les grandes valeurs. */
-export function NumberStepper({ value, onChange, min, max, label }: Props) {
-	const step = (delta: number) => {
-		const next = Math.min(max, Math.max(min, value + delta));
-		if (next !== value) {
-			tapFeedback();
-			onChange(next);
-		}
-	};
-
+/** Compteur −/+ borné aux couleurs Hextech. Un appui long saute de 5 en 5. */
+export function NumberStepper({ value, onChange, ...props }: Props) {
 	return (
-		<View style={styles.row} accessibilityRole="adjustable" accessibilityLabel={label}>
-			<StepButton
-				icon="remove"
-				label={`Diminuer ${label}`}
-				disabled={value <= min}
-				onPress={() => step(-1)}
-				onLongPress={() => step(-5)}
-			/>
-			<Text style={styles.value}>{value}</Text>
-			<StepButton
-				icon="add"
-				label={`Augmenter ${label}`}
-				disabled={value >= max}
-				onPress={() => step(1)}
-				onLongPress={() => step(5)}
-			/>
-		</View>
+		<QuantityStepper
+			{...props}
+			value={value}
+			onChange={(next) => {
+				if (next !== value) tapFeedback();
+				onChange(next);
+			}}
+			longPressStep={5}
+			styles={STYLES}
+		/>
 	);
 }
 
-type StepButtonProps = {
-	icon: "add" | "remove";
-	label: string;
-	disabled: boolean;
-	onPress: () => void;
-	onLongPress: () => void;
-};
-
-function StepButton({ icon, label, disabled, onPress, onLongPress }: StepButtonProps) {
-	return (
-		<Pressable
-			onPress={onPress}
-			onLongPress={onLongPress}
-			disabled={disabled}
-			accessibilityRole="button"
-			accessibilityLabel={label}
-			style={({ pressed }) => [
-				styles.button,
-				pressed && styles.pressed,
-				disabled && styles.disabled,
-			]}
-		>
-			<Ionicons name={icon} size={18} color={COLORS.primary} />
-		</Pressable>
-	);
-}
-
-const styles = StyleSheet.create({
+// fontWeight à "normal" : sur Android, un poids explicite fait ignorer la police chargée.
+const STYLES = {
 	row: {
-		flexDirection: "row",
 		alignItems: "stretch",
+		gap: 0,
 		borderWidth: 1,
 		borderColor: HEXTECH.gold4,
 	},
 	button: {
 		width: 42,
 		height: 42,
-		alignItems: "center",
-		justifyContent: "center",
+		borderRadius: 0,
 		backgroundColor: HEXTECH.grey4,
 	},
-	pressed: {
-		backgroundColor: "rgba(70, 55, 20, 0.6)",
-	},
-	disabled: {
+	buttonDisabled: {
 		opacity: 0.4,
 	},
-	value: {
-		minWidth: 52,
-		textAlign: "center",
-		textAlignVertical: "center",
-		lineHeight: 42,
+	buttonText: {
 		fontFamily: FONTS.bodyBold,
-		fontSize: 16,
-		color: COLORS.text,
-		backgroundColor: COLORS.background,
+		fontWeight: "normal",
+		color: COLORS.primary,
+	},
+	input: {
+		height: 42,
+		borderRadius: 0,
+		borderWidth: 0,
 		borderLeftWidth: 1,
 		borderRightWidth: 1,
 		borderColor: HEXTECH.gold4,
+		fontFamily: FONTS.bodyBold,
+		fontWeight: "normal",
+		fontSize: 16,
+		color: COLORS.text,
+		backgroundColor: COLORS.background,
 	},
-});
+} as const;

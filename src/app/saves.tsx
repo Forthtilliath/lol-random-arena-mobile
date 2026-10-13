@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { successFeedback } from "@forthtilliath/react-native-kit/utils/helpers/haptics";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Alert, FlatList, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
@@ -8,7 +9,6 @@ import { HextechButton } from "@/components/ui/HextechButton";
 import { ScreenBackground } from "@/components/ui/ScreenBackground";
 import { TEAM_SETUPS } from "@/constants/game";
 import { COLORS, FONTS, HEXTECH, SPACING } from "@/constants/theme";
-import { successFeedback } from "@/lib/haptics";
 import { selectConfig, useConfigStore } from "@/stores/configStore";
 import { useSavesStore } from "@/stores/savesStore";
 
