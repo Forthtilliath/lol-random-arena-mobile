@@ -12,6 +12,8 @@ import { COLORS, FONTS, HEXTECH, SPACING } from "@/constants/theme";
 import { selectConfig, useConfigStore } from "@/stores/configStore";
 import { useSavesStore } from "@/stores/savesStore";
 
+export { ErrorBoundary } from "@/components/ErrorBoundary";
+
 /** Groupes de joueurs sauvegardés : enregistrer la config courante, en recharger une, en supprimer. */
 export default function SavesScreen() {
 	const saves = useSavesStore((s) => s.saves);

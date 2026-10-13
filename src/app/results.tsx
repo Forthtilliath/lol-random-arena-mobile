@@ -14,6 +14,8 @@ import { formatDrawAsText } from "@/lib/shareText";
 import { selectConfig, useConfigStore } from "@/stores/configStore";
 import { useDrawStore } from "@/stores/drawStore";
 
+export { ErrorBoundary } from "@/components/ErrorBoundary";
+
 export default function ResultsScreen() {
 	const draw = useDrawStore((s) => s.draw);
 	const loading = useDrawStore((s) => s.loading);

@@ -1,67 +1,50 @@
-import { router } from "expo-router";
-import { Component, type ErrorInfo, type ReactNode } from "react";
-import { StyleSheet, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { HextechButton } from "@/components/ui/HextechButton";
-import { COLORS, FONTS, SPACING } from "@/constants/theme";
-
-type Props = { children: ReactNode };
-type State = { error: Error | null };
+import { ErrorFallback } from "@forthtilliath/react-native-kit/components/feedback/ErrorFallback";
+import type { ErrorBoundaryProps } from "expo-router";
+import { COLORS, FONTS, HEXTECH, SPACING } from "@/constants/theme";
 
 /**
- * Filet de sécurité pour une erreur de rendu imprévue : sans lui, un bug en build de production
- * ferme toute l'app au lieu d'afficher un écran de récupération. Les données persistées (pseudos,
- * sauvegardes, dernier tirage) ne sont pas touchées.
+ * Écran de récupération d'une erreur de rendu imprévue, à réexporter comme `ErrorBoundary` d'une
+ * route (convention Expo Router). Sur un écran à en-tête, la flèche retour reste utilisable. Les
+ * données persistées (pseudos, sauvegardes, dernier tirage) ne sont pas touchées.
  */
-export class ErrorBoundary extends Component<Props, State> {
-	state: State = { error: null };
-
-	static getDerivedStateFromError(error: Error): State {
-		return { error };
-	}
-
-	componentDidCatch(error: Error, info: ErrorInfo) {
-		console.error("Erreur non interceptée :", error, info.componentStack);
-	}
-
-	handleReset = () => {
-		this.setState({ error: null });
-		router.replace("/");
-	};
-
-	render() {
-		if (!this.state.error) return this.props.children;
-
-		return (
-			<SafeAreaView style={styles.container}>
-				<Text style={styles.title}>Une erreur est survenue</Text>
-				<Text style={styles.message}>
-					L'application a rencontré un problème inattendu. Tes pseudos et tes groupes restent
-					enregistrés sur l'appareil.
-				</Text>
-				<HextechButton label="Revenir à l'accueil" onPress={this.handleReset} />
-			</SafeAreaView>
-		);
-	}
+export function ErrorBoundary(props: ErrorBoundaryProps) {
+	return <ErrorFallback {...props} labels={LABELS} showDetails={false} styles={STYLES} />;
 }
 
-const styles = StyleSheet.create({
+const LABELS = {
+	hint: "L'application a rencontré un problème inattendu. Tes pseudos et tes groupes restent enregistrés sur l'appareil.",
+};
+
+// fontWeight à "normal" : sur Android, un poids explicite fait ignorer la police chargée.
+const STYLES = {
 	container: {
-		flex: 1,
 		backgroundColor: COLORS.background,
-		alignItems: "center",
-		justifyContent: "center",
 		padding: SPACING.lg,
-		gap: SPACING.md,
+	},
+	emoji: {
+		display: "none",
 	},
 	title: {
 		fontFamily: FONTS.display,
-		fontSize: 20,
+		fontWeight: "normal",
 		color: COLORS.text,
 	},
-	message: {
+	hint: {
 		fontFamily: FONTS.body,
-		textAlign: "center",
+		opacity: 1,
 		color: COLORS.textMuted,
 	},
-});
+	button: {
+		borderRadius: 0,
+		borderWidth: 2,
+		borderColor: HEXTECH.gold3,
+		backgroundColor: HEXTECH.blue7,
+	},
+	buttonText: {
+		fontFamily: FONTS.display,
+		fontWeight: "normal",
+		letterSpacing: 1.8,
+		textTransform: "uppercase",
+		color: COLORS.text,
+	},
+} as const;
