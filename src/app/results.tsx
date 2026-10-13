@@ -1,3 +1,7 @@
+import {
+	errorFeedback,
+	successFeedback,
+} from "@forthtilliath/react-native-kit/utils/helpers/haptics";
 import { router } from "expo-router";
 import { ScrollView, Share, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -6,7 +10,6 @@ import { HextechButton } from "@/components/ui/HextechButton";
 import { ScreenBackground } from "@/components/ui/ScreenBackground";
 import { TEAM_NAMES } from "@/constants/game";
 import { COLORS, FONTS, HEXTECH, SPACING } from "@/constants/theme";
-import { errorFeedback, successFeedback } from "@/lib/haptics";
 import { formatDrawAsText } from "@/lib/shareText";
 import { selectConfig, useConfigStore } from "@/stores/configStore";
 import { useDrawStore } from "@/stores/drawStore";
