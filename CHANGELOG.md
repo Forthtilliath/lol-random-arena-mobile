@@ -6,6 +6,13 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et le p
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-11-09
+
+### Modifié
+
+- Mise à jour des bibliothèques partagées (`@forthtilliath/react-native-kit` 0.23, `ts-kit` 0.17) et d'Expo 57.
+- Modules natifs `react-native-reanimated` et `react-native-worklets` alignés sur les versions attendues par Expo 57.
+
 ## [1.1.0] - 2026-10-13
 
 ### Sécurité
